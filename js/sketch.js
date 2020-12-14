@@ -1,8 +1,26 @@
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(COLUMNS*IMAGE_SIZE, ROWS*IMAGE_SIZE +HEIGHT_TEXT);
+
+  myMaze = new Maze();
+
+  for (var i = 0; i < myMaze.rows; i++)
+    for (var j = 0; j < myMaze.columns; j++) {
+      if (myMaze.mapa[i][j] == 0) {
+
+
+  // Set text characteristics
+  textFont
+  textSize
+  textAlign
+  textStyle
 }
 
 
+function preload() {
+  rocaImage = loadImage("images/roca.bmp");
+
+//  font = loadFont('assets/SourceSansPro-Regular.otf');
+}
 function draw() {
   background(220);
   //  roca.show();
