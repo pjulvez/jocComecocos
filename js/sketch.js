@@ -7,12 +7,6 @@ function setup() {
     for (var j = 0; j < myMaze.columns; j++) {
       if (myMaze.mapa[i][j] == 0) {
 
-
-  // Set text characteristics
-  textFont
-  textSize
-  textAlign
-  textStyle
 }
 
 
