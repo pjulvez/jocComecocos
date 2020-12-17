@@ -1,3 +1,9 @@
+  var arrayRocasMapa = new array[]; 
+function preload() {
+  rocaImage = loadImage("images/roca.bmp");
+
+//  font = loadFont('assets/SourceSansPro-Regular.otf');
+}
 function setup() {
   createCanvas(COLUMNS*IMAGE_SIZE, ROWS*IMAGE_SIZE +HEIGHT_TEXT);
 
@@ -9,12 +15,6 @@ function setup() {
 
 }
 
-
-function preload() {
-  rocaImage = loadImage("images/roca.bmp");
-
-//  font = loadFont('assets/SourceSansPro-Regular.otf');
-}
 function draw() {
   background(220);
   //  roca.show();
