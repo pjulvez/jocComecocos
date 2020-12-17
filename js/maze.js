@@ -6,22 +6,23 @@ class Maze {
     constructor() {
       this.rows = ROWS;
       this.columns = COLUMNS;
-      this.mapa = [
+      this.sizeGame = IMAGE_SIZE;
+      this.maze = [
                      [0, 0, 2, 0, 0],
                      [0, 0, 0, 0, 0],
                      [1, 1, 0, 0, 2],
                      [0, 1, 0, 0, 0],
                      [0, 1, 1, 1, 1],
 
-                   ];
-     constructor(ROWS,COLUMNS){
+                 ];
+  /*   constructor(ROWS,COLUMNS){
         this.rows = ROWS;
         this.columns = COLUMNS;
-        IMAGE_SIZE = 222;
-
+        this.image_size = IMAGE_SIZE
+*/
 
      }
-    }
+
 
 
 
