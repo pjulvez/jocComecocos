@@ -1,11 +1,11 @@
-  var arrayRocasMapa = new array[]; 
+  var arrayRocasMapa = new array[];
 function preload() {
   rocaImage = loadImage("images/roca.bmp");
 
 //  font = loadFont('assets/SourceSansPro-Regular.otf');
 }
 function setup() {
-  createCanvas(COLUMNS*IMAGE_SIZE, ROWS*IMAGE_SIZE +HEIGHT_TEXT);
+  createCanvas(COLUMNS*IMAGE_SIZE, ROWS*IMAGE_SIZE);
 
   myMaze = new Maze();
 
