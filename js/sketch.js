@@ -18,8 +18,12 @@ function setup() {
     for (let j = 0; j < myMaze.maze.length; j++) {
           if(myMaze.maze[i][j]=== 1){
             let rocatemp = new Roca()
-            arrayRocasMapa.push( new Roca(i*myMaze.imageSize, j*myMaze.imageSize))
+            arrayRocasMapa.push(new Roca(i*myMaze.imageSize, j*myMaze.imageSize))
 
+          }  if(myMaze.maze[i][j]=== 2){
+
+            let menjartemp = new Menjar()
+            arrayMenjarMapa.push(new Menjar(i*myMaze.imageSize, j*myMaze.imageSize))
           }
 
     }

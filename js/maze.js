@@ -8,9 +8,9 @@ class Maze {
       this.columns = COLUMNS;
       this.imageSize = IMAGE_SIZE;
       this.maze = [
-                     [0, 0, 1, 0, 0],
+                     [0, 2, 1, 2, 0],
                      [0, 0, 0, 0, 0],
-                     [1, 1, 0, 0, 2],
+                     [1, 1, 0, 2, 2],
                      [0, 1, 0, 0, 0],
                      [1, 1, 1, 1, 1],
 
