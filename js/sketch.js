@@ -41,6 +41,12 @@ function draw() {
   for (let i = 0; i < arrayRocasMapa.length; i++) {
     console.log("Imprimo una roca:" + i);
     arrayRocasMapa[i].show();
+
+  }
+  for (let i = 0; i < arrayMenjarMapa.length; i++) {
+    console.log("Imprimo un de menjar:" + i);
+    arrayMenjarMapa[i].show();
+
   }
 
 }
