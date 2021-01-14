@@ -4,10 +4,11 @@ var arrayMenjarMapa = [];
 var myMaze = new Maze();
 var rocaImage;
 var menjarImage;
-
+var roca;
 function preload() {
+
   rocaImage = loadImage("images/roca.bmp");
-  menjarImage = loadImage("images/food.png");
+  menjarImage = loadImage("images/food.bmp");
 //  font = loadFont('assets/SourceSansPro-Regular.otf');
 }
 function setup() {
@@ -34,7 +35,13 @@ function draw() {
 
 
   background(0);
-  //roca.show();
+  arrayRocasMapa.forEach(function callback(roca) {
+       roca.show();
+    });
+    arrayMenjarMapa.forEach(function callback(menjar) {
+         menjar.show();
+      });
+
 
   //with i i count the rows, with j the columns
 
