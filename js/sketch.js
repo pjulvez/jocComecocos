@@ -1,18 +1,21 @@
-
+const s = ( p ) => {
 var arrayRocasMapa = [];
 var arrayMenjarMapa = [];
+var arrayPacmanMapa = [];
 var myMaze = new Maze();
 var rocaImage;
 var menjarImage;
 var roca;
-function preload() {
+var pacmanImage;
+p.preload = function() {
 
-  rocaImage = loadImage("images/roca.bmp");
-  menjarImage = loadImage("images/food.bmp");
+  rocaImage = p.loadImage("images/roca.bmp");
+  menjarImage = p.loadImage("images/food.bmp");
+  pacmanImage = p.loadImage("images/pacman.bmp")
 //  font = loadFont('assets/SourceSansPro-Regular.otf');
 }
-function setup() {
-  createCanvas(myMaze.rows*myMaze.imageSize, myMaze.columns*myMaze.imageSize);
+p.setup = function() {
+  p.createCanvas(myMaze.rows*myMaze.imageSize, myMaze.columns*myMaze.imageSize);
 
   for (let i = 0; i < myMaze.maze.length; i++){
 
@@ -26,35 +29,45 @@ function setup() {
             let menjartemp = new Menjar()
             arrayMenjarMapa.push(new Menjar(i*myMaze.imageSize, j*myMaze.imageSize))
           }
+          if(myMaze.maze[i][j]=== 3){
+
+            let pacmantemp = new Pacman()
+            arrayPacmanMapa.push(new Pacman(i*myMaze.imageSize, j*myMaze.imageSize))
+          }
 
     }
   }
 
 }
-function draw() {
+p.draw = function() {
 
 
-  background(0);
+  p.background(0);
   arrayRocasMapa.forEach(function callback(roca) {
-       roca.show();
+       roca.showInstanceMode(p,rocaImage);
     });
     arrayMenjarMapa.forEach(function callback(menjar) {
-         menjar.show();
+         menjar.showInstanceMode(p,menjarImage);
       });
-
+      arrayPacmanMapa.forEach(function callback(pacman) {
+           pacman.showInstanceMode(p,pacmanImage);
+        });
 
   //with i i count the rows, with j the columns
 
+/*
   for (let i = 0; i < arrayRocasMapa.length; i++) {
-    console.log("Imprimo una roca:" + i);
+
     arrayRocasMapa[i].show();
 
   }
   for (let i = 0; i < arrayMenjarMapa.length; i++) {
-    console.log("Imprimo un de menjar:" + i);
+
     arrayMenjarMapa[i].show();
 
   }
-
-}
+*/
+} //clau tanca draw
+} //clau tanca const
 //array Maze = new Array[0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1];
+let myp5 = new p5(s, 'joc');
