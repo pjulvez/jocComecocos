@@ -12,11 +12,11 @@ class Roca extends GameObject
 
   }*/
 
-    showInstanceMode(p, menjarImage) {
+    showInstanceMode(p, rocaImage) {
       //Nota: first in sketch.js preload we have to implement: img = loadImage('assets/laDefense.jpg');
       // Top-left corner of the img is at (x, y)
       // Width and height are the img's original width and heigh
-      p.image(menjarImage,this.coordX,this.coordY);
+      p.image(rocaImage,this.coordX,this.coordY);
 
     }
 }

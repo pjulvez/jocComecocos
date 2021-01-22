@@ -1,20 +1,29 @@
 const s = ( p ) => {
+
 var arrayRocasMapa = [];
 var arrayMenjarMapa = [];
 var arrayPacmanMapa = [];
 var myMaze = new Maze();
 var rocaImage;
 var menjarImage;
-var roca;
+var pacman = new Pacman(0*myMaze.imageSize, 0*myMaze.imageSize);
 var pacmanImage;
+var pacmanImage2;
+var pacmanImage3;
+var pacmanImage4;
+
 p.preload = function() {
 
   rocaImage = p.loadImage("images/roca.bmp");
   menjarImage = p.loadImage("images/food.bmp");
-  pacmanImage = p.loadImage("images/pacman.bmp")
+  pacmanImage = p.loadImage("images/pacman.png")
+  pacmanImage2 = p.loadImage("images/pacmanesquerra.png")
+  pacmanImage3 = p.loadImage("images/pacmanUp.png")
+  pacmanImage4 = p.loadImage("images/pacmanDown.png")
 //  font = loadFont('assets/SourceSansPro-Regular.otf');
 }
 p.setup = function() {
+
   p.createCanvas(myMaze.rows*myMaze.imageSize, myMaze.columns*myMaze.imageSize);
 
   for (let i = 0; i < myMaze.maze.length; i++){
@@ -29,16 +38,17 @@ p.setup = function() {
             let menjartemp = new Menjar()
             arrayMenjarMapa.push(new Menjar(i*myMaze.imageSize, j*myMaze.imageSize))
           }
-          if(myMaze.maze[i][j]=== 3){
-
-            let pacmantemp = new Pacman()
-            arrayPacmanMapa.push(new Pacman(i*myMaze.imageSize, j*myMaze.imageSize))
-          }
+      //  if(myMaze.maze[i][j]=== 3){
+        //      var pacman = new Pacman(i*myMaze.imageSize, j*myMaze.imageSize);
+      //      let pacmantemp = new Pacman()
+        //    arrayPacmanMapa.push(new Pacman(i*myMaze.imageSize, j*myMaze.imageSize))
+         //}
 
     }
   }
 
 }
+
 p.draw = function() {
 
 
@@ -49,25 +59,51 @@ p.draw = function() {
     arrayMenjarMapa.forEach(function callback(menjar) {
          menjar.showInstanceMode(p,menjarImage);
       });
-      arrayPacmanMapa.forEach(function callback(pacman) {
+  //   pacman.forEach(function callback(pacman) {
            pacman.showInstanceMode(p,pacmanImage);
-        });
+    //    });
 
-  //with i i count the rows, with j the columns
+    switch (pacman.direction) {
 
-/*
-  for (let i = 0; i < arrayRocasMapa.length; i++) {
+      case 1:
+          pacman.showInstanceMode(p,pacmanImage2);
+            break;
+      case 2:
+          pacman.showInstanceMode(p,pacmanImage);
+            break;
+      case 3:
+          pacman.showInstanceMode(p,pacmanImage3);
+            break;
+      case 4:
+          pacman.showInstanceMode(p,pacmanImage4);
+        break;
+      default:
 
-    arrayRocasMapa[i].show();
+    }
+}
+p.keyPressed = function(){
+
+  if(p.keyCode == p.LEFT_ARROW){
+    pacman.moveLeft();
+    pacman.direction = 1;
+  }
+  if(p.keyCode == p.RIGHT_ARROW){
+    pacman.moveRight();
+    pacman.direction = 2;
 
   }
-  for (let i = 0; i < arrayMenjarMapa.length; i++) {
-
-    arrayMenjarMapa[i].show();
-
+  if(p.keyCode == p.UP_ARROW){
+    pacman.moveUp();
+    pacman.direction = 3;
   }
-*/
-} //clau tanca draw
+  if(p.keyCode == p.DOWN_ARROW){
+    pacman.moveDown();
+    pacman.direction = 4;
+  }
+}
+
+
+ //clau tanca draw
 } //clau tanca const
 //array Maze = new Array[0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1];
 let myp5 = new p5(s, 'joc');
