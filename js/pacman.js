@@ -19,16 +19,33 @@ class Pacman extends GameObject
 
   }
 
-  moveRight(){
-    this.coordX = this.coordX + this.speed;
+  moveRight(ampleImatge){
+    this.coordX=this.coordX + this.speed;
+    if(this.coordX  > 120){
+        this.coordX = 120;
+
+      }
   }
-  moveLeft(){
+  moveLeft(ampleImatge){
+
         this.coordX = this.coordX - this.speed;
+        if(this.coordX  < 0){
+            this.coordX = 0;
+
+          }
   }
-  moveUp(){
+  moveUp(grandariaMapa){
       this.coordY = this.coordY - this.speed;
+      if(this.coordY  < 0){
+          this.coordY = 0;
+
+      }
   }
-  moveDown(){
+  moveDown(grandariaMapa){
       this.coordY = this.coordY + this.speed;
+      if(this.coordY  > 120){
+          this.coordY = 120;
+
+      }
   }
 }

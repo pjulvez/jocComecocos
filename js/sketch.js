@@ -3,9 +3,11 @@ const s = ( p ) => {
 var arrayRocasMapa = [];
 var arrayMenjarMapa = [];
 var arrayPacmanMapa = [];
+var arrayGrapeMapa = [];
 var myMaze = new Maze();
 var rocaImage;
 var menjarImage;
+var grapeImage;
 var pacman = new Pacman(0*myMaze.imageSize, 0*myMaze.imageSize);
 var pacmanImage;
 var pacmanImage2;
@@ -13,16 +15,22 @@ var pacmanImage3;
 var pacmanImage4;
 
 p.preload = function() {
+  try {
+    rocaImage = p.loadImage("images/roca.bmp");
+    grapeImage = p.loadImage("images/grape.png");
+    menjarImage = p.loadImage("images/food.bmp");
+    pacmanImage = p.loadImage("images/pacman.png");
+    pacmanImage2 = p.loadImage("images/pacmanesquerra.png");
+    pacmanImage3 = p.loadImage("images/pacmanUp.png");
+    pacmanImage4 = p.loadImage("images/pacmanDown.png");
 
-  rocaImage = p.loadImage("images/roca.bmp");
-  menjarImage = p.loadImage("images/food.bmp");
-  pacmanImage = p.loadImage("images/pacman.png")
-  pacmanImage2 = p.loadImage("images/pacmanesquerra.png")
-  pacmanImage3 = p.loadImage("images/pacmanUp.png")
-  pacmanImage4 = p.loadImage("images/pacmanDown.png")
-//  font = loadFont('assets/SourceSansPro-Regular.otf');
+  //  font = loadFont('assets/SourceSansPro-Regular.otf');
+}catch (Execption) { // non-standard
+     console.log("Error al cargar les imatges");
+  }
 }
 p.setup = function() {
+  try{
 
   p.createCanvas(myMaze.rows*myMaze.imageSize, myMaze.columns*myMaze.imageSize);
 
@@ -38,6 +46,12 @@ p.setup = function() {
             let menjartemp = new Menjar()
             arrayMenjarMapa.push(new Menjar(i*myMaze.imageSize, j*myMaze.imageSize))
           }
+            if(myMaze.maze[i][j]=== 3){
+
+            let grapeTemp = new Grape()
+            arrayGrapeMapa.push(new Grape(i*myMaze.imageSize, j*myMaze.imageSize))
+          }
+
       //  if(myMaze.maze[i][j]=== 3){
         //      var pacman = new Pacman(i*myMaze.imageSize, j*myMaze.imageSize);
       //      let pacmantemp = new Pacman()
@@ -46,12 +60,14 @@ p.setup = function() {
 
     }
   }
-
+    }catch (Execption) { // non-standard
+       console.log("Error a les arrays de crear objectes");
+    }
 }
 
 p.draw = function() {
 
-
+try{
   p.background(0);
   arrayRocasMapa.forEach(function callback(roca) {
        roca.showInstanceMode(p,rocaImage);
@@ -59,10 +75,23 @@ p.draw = function() {
     arrayMenjarMapa.forEach(function callback(menjar) {
          menjar.showInstanceMode(p,menjarImage);
       });
+      arrayGrapeMapa.forEach(function callback(grape) {
+           grape.showInstanceMode(p,grapeImage);
+        });
   //   pacman.forEach(function callback(pacman) {
            pacman.showInstanceMode(p,pacmanImage);
     //    });
 
+
+  }catch (err) { // non-standard
+       console.log("Error al cargar les posicions de rocar i menjar en el array",err);
+  }
+  try{
+
+    if(pacman.direction < 1 && pacman.direction > 4){
+      //err = new EvalError;
+      throw new EvalError('Direccio no te un valor valid');
+    }
     switch (pacman.direction) {
 
       case 1:
@@ -80,26 +109,44 @@ p.draw = function() {
       default:
 
     }
+  }catch (err) { // non-standard
+       console.log("Error en el switch",err);
+  }
 }
-p.keyPressed = function(){
 
+
+  p.keyPressed = function(){
+
+  let ampleImatge = myMaze.IMAGE_SIZE * myMaze.COLUMNS;
+  let grandariaMapa = myMaze.IMAGE_SIZE * myMaze.ROWS;
+
+  try{
   if(p.keyCode == p.LEFT_ARROW){
-    pacman.moveLeft();
-    pacman.direction = 1;
+
+      pacman.moveLeft(ampleImatge);
+      pacman.direction = 1;
+
+
   }
   if(p.keyCode == p.RIGHT_ARROW){
-    pacman.moveRight();
+    pacman.moveRight(ampleImatge);
     pacman.direction = 2;
+    console.log(pacman.coordX);
 
   }
   if(p.keyCode == p.UP_ARROW){
-    pacman.moveUp();
+    pacman.moveUp(grandariaMapa);
     pacman.direction = 3;
   }
   if(p.keyCode == p.DOWN_ARROW){
-    pacman.moveDown();
+    pacman.moveDown(grandariaMapa);
     pacman.direction = 4;
+    console.log(pacman.coordY);
   }
+}catch (err) { // non-standard
+     console.log("Error el moviment del pacman",err);
+  }
+
 }
 
 
