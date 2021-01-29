@@ -1,4 +1,4 @@
-const ROWS = 30;
+const ROWS = 20;
 const COLUMNS = 20;
 const IMAGE_SIZE = 32; //Icons size in pixels
 

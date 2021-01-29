@@ -149,7 +149,21 @@ try{
 
 }
 
-
+function send(){
+    var myVar = {"id" : 1};
+    console.log("tuleb siia", document.getElementById('saada').value);
+    fetch("http://localhost", {
+        method: "POST",
+        headers: {
+            "Content-Type": "text/plain"
+        },
+        body: JSON.stringify(myVar)
+    }).then(function(response) {
+        return response.text();
+    }).then(function(muutuja){
+        document.getElementById('väljund').innerHTML = muutuja;
+    });
+}
  //clau tanca draw
 } //clau tanca const
 //array Maze = new Array[0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1];
