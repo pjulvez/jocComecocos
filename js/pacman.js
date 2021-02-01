@@ -21,8 +21,8 @@ class Pacman extends GameObject
 
   moveRight(ampleImatge){
     this.coordX=this.coordX + this.speed;
-    if(this.coordX  > 120){
-        this.coordX = 120;
+    if(this.coordX  > 932){
+        this.coordX = 932;
 
       }
   }
@@ -43,8 +43,8 @@ class Pacman extends GameObject
   }
   moveDown(grandariaMapa){
       this.coordY = this.coordY + this.speed;
-      if(this.coordY  > 120){
-          this.coordY = 120;
+      if(this.coordY  > 602){
+          this.coordY = 602;
 
       }
   }
