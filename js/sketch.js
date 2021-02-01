@@ -8,7 +8,7 @@ var myMaze = new Maze();
 var rocaImage;
 var menjarImage;
 var grapeImage;
-var pacman = new Pacman(0*myMaze.imageSize, 0*myMaze.imageSize);
+var pacman = new Pacman(1*myMaze.imageSize, 1*myMaze.imageSize);
 var pacmanImage;
 var pacmanImage2;
 var pacmanImage3;
