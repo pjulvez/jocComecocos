@@ -13,6 +13,7 @@ var pacmanImage;
 var pacmanImage2;
 var pacmanImage3;
 var pacmanImage4;
+var ultiPosicio;
 
 p.preload = function() {
   try {
@@ -81,7 +82,45 @@ try{
   //   pacman.forEach(function callback(pacman) {
            pacman.showInstanceMode(p,pacmanImage);
     //    });
+for(let i = 0; i < arrayMenjarMapa.length;i++){
+    if(pacman.testColliderMenjar(p,arrayMenjarMapa[i])){
+      arrayMenjarMapa.splice(i,1);
+      pacman.score = pacman.score + 10;
+      //console.log("menja")
 
+    }else{
+    //  console.log("No menja");
+    }
+}
+for(let i = 0; i < arrayGrapeMapa.length;i++){
+    if(pacman.testColliderGrape(p,arrayGrapeMapa[i])){
+      arrayGrapeMapa.splice(i,1);
+      pacman.score = pacman.score +1;
+      //console.log("menja")
+
+    }else{
+    //  console.log("No menja");
+    }
+}
+let bool_ = false;
+for(let i = 0; i < arrayRocasMapa.length;i++){
+    if(pacman.testColliderRoca(p,arrayRocasMapa[i])){
+      pacman.coordX = ultiPosicio.coordX;
+      pacman.coordY = ultiPosicio.coordY;
+      pacman.score = pacman.lives - 1;
+      bool_ = true;
+      console.log("xoca")
+
+    }else{
+
+
+      console.log("No xoca");
+    }
+}
+ if (!bool_){
+//   ultiPosicio = pacman;
+  // console.log("entra");
+ }
 
   }catch (err) { // non-standard
        console.log("Error al cargar les posicions de rocar i menjar en el array",err);
@@ -120,7 +159,9 @@ try{
   let ampleImatge = myMaze.IMAGE_SIZE * myMaze.COLUMNS;
   let grandariaMapa = myMaze.IMAGE_SIZE * myMaze.ROWS;
 
+
   try{
+  ultiPosicio = pacman;
   if(p.keyCode == p.LEFT_ARROW){
 
       pacman.moveLeft(ampleImatge);
@@ -131,7 +172,7 @@ try{
   if(p.keyCode == p.RIGHT_ARROW){
     pacman.moveRight(ampleImatge);
     pacman.direction = 2;
-    console.log(pacman.coordX);
+
 
   }
   if(p.keyCode == p.UP_ARROW){
@@ -141,8 +182,9 @@ try{
   if(p.keyCode == p.DOWN_ARROW){
     pacman.moveDown(grandariaMapa);
     pacman.direction = 4;
-    console.log(pacman.coordY);
+
   }
+
 }catch (err) { // non-standard
      console.log("Error el moviment del pacman",err);
   }
