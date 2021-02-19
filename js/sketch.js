@@ -65,7 +65,13 @@ p.setup = function() {
        console.log("Error a les arrays de crear objectes");
     }
 }
+p.newGame = function(){
+  this.lives() = 3;
+  this.score() = 0;
+  pacman = new Pacman(1*myMaze.imageSize, 1*myMaze.imageSize);
+  setup();
 
+}
 p.draw = function() {
 
 try{
@@ -85,7 +91,7 @@ try{
 for(let i = 0; i < arrayMenjarMapa.length;i++){
     if(pacman.testColliderMenjar(p,arrayMenjarMapa[i])){
       arrayMenjarMapa.splice(i,1);
-      pacman.score = pacman.score + 10;
+      pacman.score = pacman.score += 10;
       //console.log("menja")
 
     }else{
@@ -95,32 +101,22 @@ for(let i = 0; i < arrayMenjarMapa.length;i++){
 for(let i = 0; i < arrayGrapeMapa.length;i++){
     if(pacman.testColliderGrape(p,arrayGrapeMapa[i])){
       arrayGrapeMapa.splice(i,1);
-      pacman.score = pacman.score +1;
+      pacman.score = pacman.score +=1;
       //console.log("menja")
 
     }else{
     //  console.log("No menja");
     }
 }
-let bool_ = false;
+
 for(let i = 0; i < arrayRocasMapa.length;i++){
-    if(pacman.testColliderRoca(p,arrayRocasMapa[i])){
-      pacman.coordX = ultiPosicio.coordX;
-      pacman.coordY = ultiPosicio.coordY;
-      pacman.score = pacman.lives - 1;
-      bool_ = true;
-      console.log("xoca")
-
-    }else{
+      pacman.testColliderRoca(p,arrayRocasMapa[i]);
 
 
-      console.log("No xoca");
+
     }
-}
- if (!bool_){
-//   ultiPosicio = pacman;
-  // console.log("entra");
- }
+
+
 
   }catch (err) { // non-standard
        console.log("Error al cargar les posicions de rocar i menjar en el array",err);
@@ -209,4 +205,5 @@ function send(){
  //clau tanca draw
 } //clau tanca const
 //array Maze = new Array[0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1];
+
 let myp5 = new p5(s, 'joc');

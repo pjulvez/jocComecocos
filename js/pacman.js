@@ -5,9 +5,10 @@ class Pacman extends GameObject
     this.coordX=coordX;
     this.coordY=coordY;
     this.direction=0;
-    this.score =3;
+    this.score =0;
     this.lives = 3;
-    this.speed = 30;
+    this.speed = 32;
+
   }
 
   testColliderMenjar(p,menjar){
@@ -28,11 +29,23 @@ class Pacman extends GameObject
   }
   testColliderRoca(p,roca){
       let distanceRoca = p.dist(this.coordX,this.coordY,roca.coordX,roca.coordY);
-      return distanceRoca < IMAGE_SIZE;
 
+      if(distanceRoca < 16){
+          if(this.direction === 2 ){
+            this.coordX = this.coordX - this.speed;
+            console.log("xoca")
+          }else if(this.direction === 1 ){
+            this.coordX = this.coordX + this.speed;
 
+          }else if(this.direction === 4 ){
+            this.coordY = this.coordY - this.speed;
 
-
+          }else if(this.direction === 3 ){
+            this.coordY = this.coordY + this.speed;
+          }
+          this.lives -=1;
+      }
+  return distanceRoca < IMAGE_SIZE;
   }
   showInstanceMode(p, pacmanImage) {
     //Nota: first in sketch.js preload we have to implement: img = loadImage('assets/laDefense.jpg');
