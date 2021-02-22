@@ -206,4 +206,5 @@ function send(){
 } //clau tanca const
 //array Maze = new Array[0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1];
 
+
 let myp5 = new p5(s, 'joc');
