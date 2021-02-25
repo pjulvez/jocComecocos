@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-image: url('../images/fons.jpg') ;
+  background-color: black;
   background-size: auto;
 }
 canvas {

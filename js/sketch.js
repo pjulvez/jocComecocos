@@ -15,6 +15,10 @@ var pacmanImage3;
 var pacmanImage4;
 var ultiPosicio;
 
+// función que calcula y escribe el tiempo en días, horas, minutos y segundos
+let soInici;
+let soMoviment;
+let soFinal;
 p.preload = function() {
   try {
     rocaImage = p.loadImage("images/roca.bmp");
@@ -24,6 +28,10 @@ p.preload = function() {
     pacmanImage2 = p.loadImage("images/pacmanesquerra.png");
     pacmanImage3 = p.loadImage("images/pacmanUp.png");
     pacmanImage4 = p.loadImage("images/pacmanDown.png");
+    p.soundFormats('mp3', 'ogg');
+    soInici = p.loadSound("sons/pacman-song.mp3");
+    soMoviment = p.loadSound("sons/pacman-waka-waka.mp3");
+    soFinal = p.loadSound("sons/pacman-dies.mp3")
 
   //  font = loadFont('assets/SourceSansPro-Regular.otf');
 }catch (Execption) { // non-standard
@@ -60,11 +68,15 @@ p.setup = function() {
          //}
 
     }
+
   }
     }catch (Execption) { // non-standard
        console.log("Error a les arrays de crear objectes");
     }
+     soInici.play();
+
 }
+
 p.newGame = function(){
   this.lives() = 3;
   this.score() = 0;
@@ -110,8 +122,10 @@ for(let i = 0; i < arrayGrapeMapa.length;i++){
 }
 
 for(let i = 0; i < arrayRocasMapa.length;i++){
-      pacman.testColliderRoca(p,arrayRocasMapa[i]);
+      if(pacman.testColliderRoca(p,arrayRocasMapa[i])){
 
+        alert("Has perdut una vida");
+     }
 
 
     }
@@ -147,6 +161,29 @@ for(let i = 0; i < arrayRocasMapa.length;i++){
   }catch (err) { // non-standard
        console.log("Error en el switch",err);
   }
+  p.fill(255);
+  p.textSize(40);
+  p.text("Score:",10,700);
+  p.text(pacman.score,150,700);
+  p.text("Lives:",750,700);
+  p.text(pacman.lives,875,700);
+  p.text("Time:", 350,700);
+  p.text(pacman.time, 470,700);
+
+ if (p.frameCount % 43 == 0 && pacman.time > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+   pacman.time --;
+
+
+ }
+ if (pacman.time == 0 || pacman.lives == 0) {
+   if (!soFinal.isPlaying()){
+      soFinal.play();
+    }
+    p.fill(0, 0, 255);
+   p.text("GAME OVER", 400,750);
+ }
+
+
 }
 
 
@@ -162,22 +199,25 @@ for(let i = 0; i < arrayRocasMapa.length;i++){
 
       pacman.moveLeft(ampleImatge);
       pacman.direction = 1;
+      p.SorollMoviment();
 
 
   }
   if(p.keyCode == p.RIGHT_ARROW){
     pacman.moveRight(ampleImatge);
     pacman.direction = 2;
-
+    p.SorollMoviment();
 
   }
   if(p.keyCode == p.UP_ARROW){
-    pacman.moveUp(grandariaMapa);
-    pacman.direction = 3;
+      pacman.moveUp(grandariaMapa);
+      pacman.direction = 3;
+      p.SorollMoviment();
   }
   if(p.keyCode == p.DOWN_ARROW){
     pacman.moveDown(grandariaMapa);
     pacman.direction = 4;
+    p.SorollMoviment();
 
   }
 
@@ -186,6 +226,7 @@ for(let i = 0; i < arrayRocasMapa.length;i++){
   }
 
 }
+
 
 function send(){
     var myVar = {"id" : 1};
@@ -201,6 +242,14 @@ function send(){
     }).then(function(muutuja){
         document.getElementById('väljund').innerHTML = muutuja;
     });
+}
+p.SorollMoviment = function(){
+ if (!soMoviment.isPlaying()){
+       soMoviment.play();
+  }
+}
+p.facil = function(){
+
 }
  //clau tanca draw
 } //clau tanca const

@@ -8,7 +8,7 @@ class Pacman extends GameObject
     this.score =0;
     this.lives = 3;
     this.speed = 32;
-
+    this.time = 60;
   }
 
   testColliderMenjar(p,menjar){
