@@ -81,6 +81,7 @@ p.newGame = function(){
   this.lives() = 3;
   this.score() = 0;
   pacman = new Pacman(1*myMaze.imageSize, 1*myMaze.imageSize);
+  preload();
   setup();
 
 }
@@ -104,6 +105,8 @@ for(let i = 0; i < arrayMenjarMapa.length;i++){
     if(pacman.testColliderMenjar(p,arrayMenjarMapa[i])){
       arrayMenjarMapa.splice(i,1);
       pacman.score = pacman.score += 10;
+      pacman.lives = pacman.lives += 1;
+
       //console.log("menja")
 
     }else{
@@ -249,7 +252,15 @@ p.SorollMoviment = function(){
   }
 }
 p.facil = function(){
+    pacman.time = 200;
+}
+p.normal = function(){
 
+    pacman.time = 120;
+    p.setup();
+}
+p.dificil = function(){
+    pacman.time = 70;
 }
  //clau tanca draw
 } //clau tanca const

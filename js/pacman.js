@@ -22,7 +22,7 @@ class Pacman extends GameObject
   testColliderGrape(p,grape){
       let distanceMenjar = p.dist(this.coordX,this.coordY,grape.coordX,grape.coordY);
       return distanceMenjar < IMAGE_SIZE;
-
+      
 
 
 
