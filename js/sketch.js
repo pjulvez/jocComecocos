@@ -195,8 +195,8 @@ for(let i = 0; i < arrayRocasMapa.length;i++){
   p.text(pacman.lives,875,700);
   p.text("Time:", 350,700);
   p.text(pacman.time, 470,700);
-  p.text("nom:", 450,800);
-  p.text(nom, 580,800);
+  p.text("nom:", 10,750);
+  p.text(nom, 150,750);
 
 
 
@@ -208,9 +208,10 @@ for(let i = 0; i < arrayRocasMapa.length;i++){
  }
 
      if (pacman.time == 0 || pacman.lives == 0) {
+
        p.perdre();
      }
-     else if (arrayMenjarMapa.length() == 0  && arrayGrapeMapa.length() == 0 ) {
+     else if (arrayMenjarMapa?.length == 0  && arrayGrapeMapa?.length == 0 ) {
        p.guanyar();
      }
 
@@ -219,14 +220,35 @@ p.perdre = function(){
   if (!soFinal.isPlaying()){
      soFinal.play();
    }
-   p.fill(0, 0, 255);
+  p.fill(0, 0, 255);
   p.text("GAME OVER", 400,750);
+
   p.noLoop();
+
+    var opcion = confirm( "Nom: " + nom + "\n" + "Email: " + email + "\n"  +
+      "Dificultat: " + dificultat + "\n"  +
+      "Punts: " + pacman.score + "\n" +
+       "Vols tornar a jugar");
+    if (opcion == true) {
+       window.location.reload();
+	} else {
+	    mensaje = "Has clickado Cancelar";
+	}
 }
 p.guanyar = function(){
   p.fill(0, 0, 255);
   p.text("Has Guanyat", 400,750);
+  window.localStorage.setItem("score",pacman.score);
   p.noLoop();
+  var opcion = confirm( "Nom: " + nom + "\n" + "Email: " + email + "\n"  +
+    "Dificultat: " + dificultat + "\n"  +
+    "Punts: " + pacman.score + "\n" +
+     "Vols tornar a jugar");
+  if (opcion == true) {
+     window.location.reload();
+} else {
+    mensaje = "Has clickado Cancelar";
+}
 
 }
 

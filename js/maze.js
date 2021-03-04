@@ -1,5 +1,5 @@
 const ROWS = 30;
-const COLUMNS = 25;
+const COLUMNS = 24;
 const IMAGE_SIZE = 32; //Icons size in pixels
 
 class Maze {

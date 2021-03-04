@@ -25,12 +25,15 @@
     <script>
               var partida;
               function guardarDatos() {
-                  window.localStorage.setItem("nombre",document.getElementById("nombre").value);
-                  window.localStorage.setItem("email",document.getElementById("email").value);
+                var nom = document.getElementById("nombre").value;
+                  window.localStorage.setItem("nombre",nom);
+                  var email = document.getElementById("email").value;
+                  window.localStorage.setItem("email",email);
                   partida = $("input[name='dificultat']:checked").val();
                   window.localStorage.setItem("dificultat",partida);
-
+                  if (nom && email){
                   window.location.href = window.location.href.replace("formulari.html","index.html");
+                }
 
 
 
@@ -87,8 +90,8 @@
     </form>
     	<br>
 
-      <input type="button" onclick="recuperarDatos()" value="Observar Dades">
-      <input type="button"  onclick="guardarDatos()" value="Enviar">
+
+      <input class="button" type="button"  onclick="guardarDatos()" value="Enviar">
 
      </fieldset>
     </form>

@@ -75,3 +75,9 @@ canvas {
       input{
           font-size: 30px;
       }
+      .button{
+        margin: auto;
+        width: 500px;
+        background-color: black;
+        color: white;
+      }
