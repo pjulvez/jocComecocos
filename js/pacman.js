@@ -9,6 +9,7 @@ class Pacman extends GameObject
     this.lives = 3;
     this.speed = 32;
     this.time = 60;
+  
   }
 
   testColliderMenjar(p,menjar){
@@ -22,7 +23,7 @@ class Pacman extends GameObject
   testColliderGrape(p,grape){
       let distanceMenjar = p.dist(this.coordX,this.coordY,grape.coordX,grape.coordY);
       return distanceMenjar < IMAGE_SIZE;
-      
+
 
 
 

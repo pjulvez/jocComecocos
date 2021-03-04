@@ -1,10 +1,11 @@
-html, body {
+ body {
   margin: 0;
   padding: 0;
+  background-color: black;
   background-image: url("../images/fons.jpg");
   background-repeat: no-repeat;
-  background-color: black;
   background-size: 100% 1400px;
+  color:white;
 }
 canvas {
   display: block;
@@ -67,3 +68,10 @@ canvas {
 				right:-140px;
 				top:0px;
 			}
+      fieldset{
+          font-size: 30px;
+          background-color: black;
+      }
+      input{
+          font-size: 30px;
+      }

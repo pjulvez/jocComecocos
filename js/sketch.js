@@ -19,6 +19,9 @@ var ultiPosicio;
 let soInici;
 let soMoviment;
 let soFinal;
+var nom;
+var email;
+var dificultat;
 p.preload = function() {
   try {
     rocaImage = p.loadImage("images/roca.bmp");
@@ -31,7 +34,10 @@ p.preload = function() {
     p.soundFormats('mp3', 'ogg');
     soInici = p.loadSound("sons/pacman-song.mp3");
     soMoviment = p.loadSound("sons/pacman-waka-waka.mp3");
-    soFinal = p.loadSound("sons/pacman-dies.mp3")
+    soFinal = p.loadSound("sons/pacman-dies.mp3");
+    nom = window.localStorage.getItem("nombre");
+    email = window.localStorage.getItem("email");
+    dificultat = window.localStorage.getItem("dificultat");
 
   //  font = loadFont('assets/SourceSansPro-Regular.otf');
 }catch (Execption) { // non-standard
@@ -60,6 +66,23 @@ p.setup = function() {
             let grapeTemp = new Grape()
             arrayGrapeMapa.push(new Grape(i*myMaze.imageSize, j*myMaze.imageSize))
           }
+          switch (dificultat) {
+
+            case "facil":
+                  p.facil();
+
+                  break;
+            case "normal":
+                p.normal();
+                  break;
+            case "dificil":
+                p.dificil();
+                  break;
+            default:
+              p.facil();
+              break;
+          }
+
 
       //  if(myMaze.maze[i][j]=== 3){
         //      var pacman = new Pacman(i*myMaze.imageSize, j*myMaze.imageSize);
@@ -172,23 +195,40 @@ for(let i = 0; i < arrayRocasMapa.length;i++){
   p.text(pacman.lives,875,700);
   p.text("Time:", 350,700);
   p.text(pacman.time, 470,700);
+  p.text("nom:", 450,800);
+  p.text(nom, 580,800);
+
+
+
 
  if (p.frameCount % 43 == 0 && pacman.time > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
    pacman.time --;
 
 
  }
- if (pacman.time == 0 || pacman.lives == 0) {
-   if (!soFinal.isPlaying()){
-      soFinal.play();
-    }
-    p.fill(0, 0, 255);
-   p.text("GAME OVER", 400,750);
- }
 
+     if (pacman.time == 0 || pacman.lives == 0) {
+       p.perdre();
+     }
+     else if (arrayMenjarMapa.length() == 0  && arrayGrapeMapa.length() == 0 ) {
+       p.guanyar();
+     }
 
 }
+p.perdre = function(){
+  if (!soFinal.isPlaying()){
+     soFinal.play();
+   }
+   p.fill(0, 0, 255);
+  p.text("GAME OVER", 400,750);
+  p.noLoop();
+}
+p.guanyar = function(){
+  p.fill(0, 0, 255);
+  p.text("Has Guanyat", 400,750);
+  p.noLoop();
 
+}
 
   p.keyPressed = function(){
 
@@ -252,16 +292,72 @@ p.SorollMoviment = function(){
   }
 }
 p.facil = function(){
+
+
+
     pacman.time = 200;
+    pacman.score = 0;
+    pacman.lives = 5;
+//    p.draw();
+//    p.setup();
+
+
+
+
 }
 p.normal = function(){
-
+  //  window.location.reload();
+  //  p.setup();
     pacman.time = 120;
-    p.setup();
+    pacman.score = 0;
+    pacman.lives = 3;
+
+  //  p.pacman(1*myMaze.imageSize, 1*myMaze.imageSize);
+
 }
 p.dificil = function(){
-    pacman.time = 70;
+
+  pacman.time = 70;
+  pacman.score = 0;
+  pacman.lives = 2;
+//  p.setup();
+
+
+
 }
+p.ajuda = function(){
+    alert("Anar cap a dalt:   la tecla del cursor de dalt"+ "\n" + "Anar a l'esquerra: la tecla de cursor esquerra" + "\n" + "Anar a la dreta: la tecla del cursor dret" + "\n" + "Anar cap abaix: la tecla de abaix dels cursors" + "\n" + "Per guanyar menjat totes les peçes de menjar abans de que s'acabi el temps, i compte amb xocar que perds vides.");
+
+}
+p.informacio = function(){
+    alert("El navegador que se está utilizando es Firefox"  + navigator.appVersion + "\n" +document.lastModifyed+"\n" +navigator.userAgent +"\n"+ window.location.pathname + "\n" + navigator.language);
+
+}
+p.guardarDatos = function() {
+    localStorage.nombre = document.getElementById("nombre").value;
+    localStorage.email = document.getElementById("email").value;
+    localStorage.facil = document.getElementById("facil").value;
+    localStorage.normal = document.getElementById("normal").value;
+    localStorage.dificil = document.getElementById("dificil").value;
+}
+p.recuperarDatos = function(){
+
+    if ((localStorage.nombre != undefined) && (localStorage.email != undefined)) {
+        document.getElementById("datos").innerHTML = "Nombre: " + localStorage.nombre + " Email: " + localStorage.email;
+    } else {
+        document.getElementById("datos").innerHTML = "No has introducido tu nombre y tu password";
+    }
+    if (localStorage.facil != undefined){
+        document.getElementById("datos").innerHTML = "Dificultat: " + localStorage.facil;
+    } else if(localStorage.normal != undefined){
+      document.getElementById("datos").innerHTML = "Dificultat: " + localStorage.normal;
+    } else if(localStorage.dificil != undefined){
+     document.getElementById("datos").innerHTML = "Dificultat: " + localStorage.dificil;
+   }else{
+        document.getElementById("datos").innerHTML = "No has introduit la dificultat";
+   }
+}
+
  //clau tanca draw
 } //clau tanca const
 //array Maze = new Array[0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1];
